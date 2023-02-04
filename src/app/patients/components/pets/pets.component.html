@@ -1,0 +1,804 @@
+<div class="main-wrapper">
+  <app-menu></app-menu>
+
+  <div class="page-wrapper">
+    <div class="content">
+      <div class="row">
+        <div class="col-sm-4 col-3">
+          <h4 class="page-title">Patients</h4>
+        </div>
+        <!-- <div class="col-sm-8 col-9 text-right m-b-20">
+          <a href="addPatient" class="btn btn-primary btn-rounded float-right text-light"
+            ><i class="fa fa-plus"></i> Add Patient</a
+          >
+        </div> -->
+        <div class="col-sm-12 text-right m-b-20">
+          <a class="btn btn-outline-info text-info  " (click)="cards()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid "
+              viewBox="0 0 16 16">
+              <path
+                d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+            </svg>
+            Card View</a>
+          <a class=" btn btn-outline-info text-info mx-3" (click)="lists()"> <i class="fa fa-bars"></i> List View
+          </a>
+          <a href="addPatient" class=" btn btn-outline-info text-info"><i class="fa fa-plus"></i> Add Patient</a>
+        </div>
+      </div>
+      <div class="row" *ngIf="list">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-striped custom-table">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Age</th>
+                  <th>Address</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Gender</th>
+                  <th>Status</th>
+                  <th class="text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of patients">
+                  <!-- <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""></td> -->
+                  <td> {{p.id}}</td>
+                  <td> {{p.fName}}</td>
+                  <td> {{p.lName}}</td>
+                  <td>{{p.Age}}</td>
+                  <td>{{p.address}}</td>
+                  <td>{{p.phno}}</td>
+                  <td>{{p.email}}</td>
+                  <td>{{p.gender}}</td>
+                  <td>{{p.status}}</td>
+                  <td class="text-right">
+                    <div class="dropdown dropdown-action">
+                      <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                          class="fa fa-ellipsis-v"></i></a>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="edit-patient.html"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"
+                          (click)="delete_pets(p)"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <!-- <tr>
+                      <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""> Terry Baker</td>
+                      <td>63</td>
+                      <td>555 Front St #APT 2H, Hempstead, NY, 11550</td>
+                      <td>(376) 150 6975</td>
+                      <td>terrybaker@example.com</td>
+                      <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                  <a class="dropdown-item" href="edit-patient.html"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                              </div>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""> Dennis Salazar</td>
+                      <td>34</td>
+                      <td>891 Juniper Drive, Saginaw, MI, 48603</td>
+                      <td>(933) 137 6201</td>
+                      <td>dennissalazar@example.com</td>
+                      <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                  <a class="dropdown-item" href="edit-patient.html"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                              </div>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""> Charles Ortega</td>
+                      <td>32</td>
+                      <td>3169 Birch Street, El Paso, TX, 79915</td>
+                      <td>(380) 141 1885</td>
+                      <td>charlesortega@example.com</td>
+                      <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                  <a class="dropdown-item" href="edit-patient.html"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                              </div>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""> Sandra Mendez</td>
+                      <td>24</td>
+                      <td>2535 Linden Avenue, Orlando, FL, 32789</td>
+                      <td>(797) 506 1265</td>
+                      <td>sandramendez@example.com</td>
+                      <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                  <a class="dropdown-item" href="edit-patient.html"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                              </div>
+                          </div>
+                      </td>
+                  </tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row doctor-grid" *ngIf="card">
+        <div class="col-md-4 col-sm-4 col-lg-3" *ngFor="let p of patients">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="#"><img alt="" [src]="p.imglink" /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                  class="fa fa-ellipsis-v"></i></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="edit-doctor.html"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"
+                  (click)="delete_pets(p)"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a href="profile.html">{{p.fName + " "+p.lName}}</a>
+            </h4>
+
+            <div class="user-country">
+              <i class="fa fa-map-marker"></i> {{p.Country}}
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-4 col-sm-4 col-lg-3">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="profile.html"
+                ><img alt="" src="assets/img/patient8.jpg"
+              /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a
+                href="#"
+                class="action-icon dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                ><i class="fa fa-ellipsis-v"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="edit-doctor.html"
+                  ><i class="fa fa-pencil m-r-5"></i> Edit</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#delete_doctor"
+                  ><i class="fa fa-trash-o m-r-5"></i> Delete</a
+                >
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a href="profile.html">Linda Barrett</a>
+            </h4>
+
+            <div class="user-country">
+              <i class="fa fa-map-marker"></i> United States, San Francisco
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-3">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="profile.html"
+                ><img alt="" src="assets/img/patient9.jpg"
+              /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a
+                href="#"
+                class="action-icon dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                ><i class="fa fa-ellipsis-v"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="edit-doctor.html"
+                  ><i class="fa fa-pencil m-r-5"></i> Edit</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#delete_doctor"
+                  ><i class="fa fa-trash-o m-r-5"></i> Delete</a
+                >
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a href="profile.html">Ronald Jacobs</a>
+            </h4>
+
+            <div class="user-country">
+              <i class="fa fa-map-marker"></i> United States, San Francisco
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-3">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="profile.html"
+                ><img alt="" src="assets/img/patient10.jpg"
+              /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a
+                href="#"
+                class="action-icon dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                ><i class="fa fa-ellipsis-v"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="edit-doctor.html"
+                  ><i class="fa fa-pencil m-r-5"></i> Edit</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#delete_doctor"
+                  ><i class="fa fa-trash-o m-r-5"></i> Delete</a
+                >
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a href="profile.html">Albert Sandoval</a>
+            </h4>
+
+            <div class="user-country">
+              <i class="fa fa-map-marker"></i> United States, San Francisco
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-3">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="profile.html"
+                ><img alt="" src="assets/img/patient11.jpg"
+              /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a
+                href="#"
+                class="action-icon dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                ><i class="fa fa-ellipsis-v"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="edit-doctor.html"
+                  ><i class="fa fa-pencil m-r-5"></i> Edit</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#delete_doctor"
+                  ><i class="fa fa-trash-o m-r-5"></i> Delete</a
+                >
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a href="profile.html">Diana Bailey</a>
+            </h4>
+
+            <div class="user-country">
+              <i class="fa fa-map-marker"></i> United States, San Francisco
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-3">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="profile.html"
+                ><img alt="" src="assets/img/patient12.jpg"
+              /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a
+                href="#"
+                class="action-icon dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                ><i class="fa fa-ellipsis-v"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="edit-doctor.html"
+                  ><i class="fa fa-pencil m-r-5"></i> Edit</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#delete_doctor"
+                  ><i class="fa fa-trash-o m-r-5"></i> Delete</a
+                >
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a href="profile.html">Shirley Willis</a>
+            </h4>
+
+            <div class="user-country">
+              <i class="fa fa-map-marker"></i> United States, San Francisco
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-3">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="profile.html"
+                ><img alt="" src="assets/img/patient-thumb-02.jpg"
+              /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a
+                href="#"
+                class="action-icon dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                ><i class="fa fa-ellipsis-v"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="edit-doctor.html"
+                  ><i class="fa fa-pencil m-r-5"></i> Edit</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#delete_doctor"
+                  ><i class="fa fa-trash-o m-r-5"></i> Delete</a
+                >
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a href="profile.html">Pamela Curtis</a>
+            </h4>
+
+            <div class="user-country">
+              <i class="fa fa-map-marker"></i> United States, San Francisco
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-3">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="profile.html"
+                ><img alt="" src="assets/img/patient4.jpg"
+              /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a
+                href="#"
+                class="action-icon dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                ><i class="fa fa-ellipsis-v"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="edit-doctor.html"
+                  ><i class="fa fa-pencil m-r-5"></i> Edit</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#delete_doctor"
+                  ><i class="fa fa-trash-o m-r-5"></i> Delete</a
+                >
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a href="profile.html">Cristina Groves</a>
+            </h4>
+
+            <div class="user-country">
+              <i class="fa fa-map-marker"></i> United States, San Francisco
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-3">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="profile.html"
+                ><img alt="" src="assets/img/patient5.jpg"
+              /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a
+                href="#"
+                class="action-icon dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                ><i class="fa fa-ellipsis-v"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="edit-doctor.html"
+                  ><i class="fa fa-pencil m-r-5"></i> Edit</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#delete_doctor"
+                  ><i class="fa fa-trash-o m-r-5"></i> Delete</a
+                >
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a href="profile.html">Marie Wells</a>
+            </h4>
+
+            <div class="user-country">
+              <i class="fa fa-map-marker"></i> United States, San Francisco
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-3">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="profile.html"
+                ><img alt="" src="assets/img/patient3.jpg"
+              /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a
+                href="#"
+                class="action-icon dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                ><i class="fa fa-ellipsis-v"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="edit-doctor.html"
+                  ><i class="fa fa-pencil m-r-5"></i> Edit</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#delete_doctor"
+                  ><i class="fa fa-trash-o m-r-5"></i> Delete</a
+                >
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a href="profile.html">Henry Daniels</a>
+            </h4>
+
+            <div class="user-country">
+              <i class="fa fa-map-marker"></i> United States, San Francisco
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-3">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="profile.html"
+                ><img alt="" src="assets/img/patient6.jpg"
+              /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a
+                href="#"
+                class="action-icon dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                ><i class="fa fa-ellipsis-v"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="edit-doctor.html"
+                  ><i class="fa fa-pencil m-r-5"></i> Edit</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#delete_doctor"
+                  ><i class="fa fa-trash-o m-r-5"></i> Delete</a
+                >
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a href="profile.html">Mark Hunter</a>
+            </h4>
+
+            <div class="user-country">
+              <i class="fa fa-map-marker"></i> United States, San Francisco
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-3">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="profile.html"
+                ><img alt="" src="assets/img/patient-thumb-01.jpg"
+              /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a
+                href="#"
+                class="action-icon dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                ><i class="fa fa-ellipsis-v"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="edit-doctor.html"
+                  ><i class="fa fa-pencil m-r-5"></i> Edit</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#delete_doctor"
+                  ><i class="fa fa-trash-o m-r-5"></i> Delete</a
+                >
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a href="profile.html">Justin Parker</a>
+            </h4>
+
+            <div class="user-country">
+              <i class="fa fa-map-marker"></i> United States, San Francisco
+            </div>
+          </div>
+        </div>
+      </div> -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="see-all">
+              <a class="see-all-btn" href="javascript:void(0);">Load More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notification-box">
+        <div class="msg-sidebar notifications msg-noti">
+          <div class="topnav-dropdown-header">
+            <span>Messages</span>
+          </div>
+          <div class="drop-scroll msg-list-scroll" id="msg_list">
+            <ul class="list-box">
+              <li>
+                <a href="chat">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">R</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">Richard Miles </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat">
+                  <div class="list-item new-message">
+                    <div class="list-left">
+                      <span class="avatar">J</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">John Doe</span>
+                      <span class="message-time">1 Aug</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">T</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author"> Tarah Shropshire </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">M</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">Mike Litorus</span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">C</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author"> Catherine Manseau </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">D</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author"> Domenic Houston </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">B</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author"> Buster Wigton </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">R</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author"> Rolland Webber </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">C</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author"> Claire Mapes </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">M</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">Melita Faucher</span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">J</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">Jeffery Lalor</span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">L</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">Loren Gatlin</span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">T</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">Tarah Shropshire</span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="topnav-dropdown-footer">
+            <a href="chat">See all messages</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="delete_patient" class="modal fade delete-modal" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <img src="assets/img/sent.png" alt="" width="50" height="46">
+            <h3>Are you sure want to delete this Patient?</h3>
+            <div class="m-t-20"> <a href="#" class="btn btn-white mx-3" data-dismiss="modal">Close</a>
+              <button type="submit" class="btn btn-danger" (click)="remove_pets()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
