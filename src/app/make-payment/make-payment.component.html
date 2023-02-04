@@ -1,0 +1,53 @@
+<div class="wrapper">
+  <div class="payment">
+    <div class="payment-logo">
+    </div>
+    <h2>Make Payment</h2>
+    <form class="form" [formGroup]="formValue" (submit)="postPaymentDetails()">
+      <div class="icon-relative">
+        <label class="label">Credit Card number</label>
+        <input type="text" formControlName="cardNumber"  class="form-control" style="text-align: center;"  
+          placeholder="xxxx-xxxx-xxxx-xxxx"
+          [ngClass]="{'is-invalid':submitted && h['cardNumber'].errors}" pattern="(^[0-9]*$)" maxlength="16">
+          <div *ngIf ="submitted && h['cardNumber'].errors" class="text-warning">
+            <div *ngIf = "h['cardNumber'].errors['required']">Enter the valid number</div>
+            <div *ngIf = "h['cardNumber'].errors['pattern']">Enter number nummber</div>
+          </div>
+        <i class="far fa-credit-card"></i>
+      </div>
+      <div class=" icon-relative">
+        <label class="label">Name on Card</label>
+        <input type="text" formControlName="nameOnCard" class="form-control" style="text-align: center;" placeholder="Account Holder Name"
+        [ngClass]="{'is-invalid':submitted && h['nameOnCard'].errors}" pattern="" maxlength="25">
+          <div   *ngIf ="submitted && h['nameOnCard'].errors" class="text-warning">
+            <div *ngIf = "h['nameOnCard'].errors['required']">Enter the Name</div>
+          </div>
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="card-grp space">
+        <div class="icon-relative">
+          <label class="label">Expiry date</label>
+          <input type="text" formControlName="expYear" name="expiry-data" style="text-align: center;" class="form-control" placeholder="00 / 00"
+          [ngClass]="{'is-invalid':submitted && h['cardNumber'].errors}" pattern="(^[0-9]*$)" maxlength="7">
+          <div   *ngIf ="submitted && h['cardNumber'].errors" class="text-warning">
+            <div *ngIf = "h['cardNumber'].errors['required']">Enter the date</div>
+            <div *ngIf = "h['cardNumber'].errors['pattern']">Enter numbers only allowed</div>
+          </div>
+          <i class="far fa-calendar-alt"></i>
+        </div>
+        <div class="icon-relative">
+          <label class="label">CVV:</label>
+          <input type="text" formControlName="cvv" class="form-control" style="text-align: center;" data-mask="000" placeholder="000"
+          [ngClass]="{'is-invalid':submitted && h['cvv'].errors}" pattern="(^[0-9]*$)" maxlength="3">
+          <div   *ngIf ="submitted && h['cvv'].errors" class="text-warning">
+            <div *ngIf = "h['cvv'].errors['required']">Enter the number</div>
+            <div *ngIf = "h['cvv'].errors['pattern']">Enter numbers only</div>
+          </div>
+          <i class="fas fa-lock"></i>
+        </div>
+      </div>
+      <button type="submit"   class="btn btn-primary btn-sm" >pay</button>
+      <button   (click)="postPaymentDetails()" class="btn btn-secondary btn-sm" style="margin-left: 20px;">cancel</button>
+    </form>
+  </div>
+</div>
